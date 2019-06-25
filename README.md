@@ -9,7 +9,7 @@
 
 The goal of `eads` is to provide local data users access to both canned
 and custom data tables at a variety of [Census geographies]() and
-[spatial extents](). This is a joint project the [SLU
+[spatial extents](). This is a joint project of the [SLU
 openGIS](https://slu-opengis.github.io) effort and the [St. Louis
 Regional Data Alliance]().
 
