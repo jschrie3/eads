@@ -9,7 +9,6 @@ Authors@R: c(
     comment = c(ORCID = "0000-0002-4361-2811"),
     person("St. Louis Regional Data Alliance", role = c(fnd")
     )
-Maintainer: The package maintainer <yourself@somewhere.net>
 Description: Provides a set of functions for downloading both canned and
     custom data tables that contain demographic data about the St. Louis
     Region.
