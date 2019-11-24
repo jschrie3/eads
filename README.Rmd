@@ -28,6 +28,9 @@ The development version from [GitHub](https://github.com/) with:
 remotes::install_github("slu-openGIS/eads")
 ```
 
+## Regional Census Data
+
+
 ## What's in a Name?
 `eads` is a reference to the [Eads Bridge](https://en.wikipedia.org/wiki/Eads_Bridge), the first bridge erected across the Mississippi River in St. Louis and an iconic landmark in the region. Like its namesake, `eads` provides a link between disparate corners of the region, ensuring we can paint a unified portrait with data instead of steel.
 

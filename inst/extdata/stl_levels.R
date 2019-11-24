@@ -13,13 +13,13 @@ il_names <- c("Calhoun", "Clinton", "Greene", "Jersey", "Macoupin", "Madison", "
 mo_counties <- counties(state = "MO", class = "sf") %>%
   filter(NAME %in% mo_names) %>%
   mutate(STATE = "MO") %>%
-  select(STATE, GEOID, NAMELSAD)
+  select(STATE, GEOID, NAMELSAD, STATEFP, COUNTYFP)
 
 # download illinois counties
 il_counties <- counties(state = "IL", class = "sf") %>%
   filter(NAME %in% il_names) %>%
   mutate(STATE = "IL") %>%
-  select(STATE, GEOID, NAMELSAD)
+  select(STATE, GEOID, NAMELSAD, STATEFP, COUNTYFP)
 
 # combine and remove geometry
 stl_levels <- rbind(mo_counties, il_counties)
@@ -33,7 +33,9 @@ stl_levels %>%
   rename(
     state = STATE,
     geoid = GEOID,
-    name = NAMELSAD
+    name = NAMELSAD,
+    state_fips = STATEFP,
+    county_fips = COUNTYFP
   ) %>%
   mutate(name = ifelse(geoid == "29510", "St. Louis City", name)) %>%
   mutate(
@@ -47,7 +49,12 @@ stl_levels %>%
     msa = TRUE
   ) %>%
   select(-state) %>%
-  arrange(as.numeric(geoid)) -> stl_levels
+  arrange(as.numeric(geoid)) %>%
+  select(
+    geoid, name,
+    city, city_county, core, ew_gateway, metro_east, metro_west, msa,
+    state_fips, county_fips
+  ) -> stl_levels
 
 # save data
 save(stl_levels, file = "data/stl_levels.rda")
