@@ -7,7 +7,7 @@
 #' @param overwrite Logical, if TRUE will overwrite the installation in the .Renviron of the keys specified
 
 
-eads_install_keys <- function(census, bls, overwrite = FALSE){
+stl_install_keys <- function(census, bls, overwrite = FALSE){
 
   if(missing(census) & missing(bls)){
     stop("No keys were provided to be installed")
