@@ -159,7 +159,7 @@ stl_get_acs <- function(region, level, table, variable, year, product, geometry)
       mo_counties <- mo_counties$counties
 
       # get IL data
-      il <- tidycensus::get_acs(geography = level,
+      il <- suppressMessages(tidycensus::get_acs(geography = level,
                                 state = 17,
                                 county = il_counties,
                                 table = table,
@@ -167,7 +167,7 @@ stl_get_acs <- function(region, level, table, variable, year, product, geometry)
                                 year = year,
                                 survey = product,
                                 geometry = geometry,
-                                output = "wide")
+                                output = "wide"))
 
       # get MO data
       mo <- tidycensus::get_acs(geography = level,
@@ -227,13 +227,13 @@ stl_get_decennial <- function(region, level, variable, year, geometry){
       mo_counties <- mo_counties$counties
 
       # get IL data
-      il <- tidycensus::get_decennial(geography = level,
+      il <- suppressMessages(tidycensus::get_decennial(geography = level,
                                 state = 17,
                                 county = il_counties,
                                 variables = variable,
                                 year = year,
                                 geometry = geometry,
-                                output = "wide")
+                                output = "wide"))
 
       # get MO data
       mo <- tidycensus::get_decennial(geography = level,

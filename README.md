@@ -35,7 +35,6 @@ metro St. Louis area:
 +                variable = "H005001", year = 2010, 
 +                product = "census")
 Getting data from the 2010 decennial Census
-Getting data from the 2010 decennial Census
 # A tibble: 16 x 3
    GEOID NAME                         H005001
    <chr> <chr>                          <dbl>
@@ -64,7 +63,6 @@ Gateway counties in 2000:
 > stl_get_census(region = "ew gateway", level = "county", 
 +                variable = "H005001", year = 2000, 
 +                product = "census")
-Getting data from the 2000 decennial Census
 Getting data from the 2000 decennial Census
 # A tibble: 8 x 3
   GEOID NAME               H005001
