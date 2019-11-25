@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_census.R
 \name{stl_get_census}
 \alias{stl_get_census}
-\title{Get Census Variables}
+\title{Get Census Demographic Data}
 \usage{
 stl_get_census(region, level, topic, table, variable, year, product,
   geometry = FALSE)
@@ -33,5 +33,6 @@ American Community Survey (ACS) estimates, \code{"acs3"} for the 3-year ACS esti
 to \code{FALSE}.}
 }
 \description{
-Pull data from the U.S. Census Bureau's API via the \code{tidycensus} package.
+Pull demographic data from the U.S. Census Bureau's API via the
+    \code{tidycensus} package.
 }

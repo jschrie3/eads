@@ -1,6 +1,7 @@
-#' Get Census Variables
+#' Get Census Demographic Data
 #'
-#' @description Pull data from the U.S. Census Bureau's API via the \code{tidycensus} package.
+#' @description Pull demographic data from the U.S. Census Bureau's API via the
+#'     \code{tidycensus} package.
 #'
 #' @param region One of \code{"city"}, \code{"city/county"}, \code{"core"}, \code{"ew gateway"},
 #'     \code{"metro east"}, \code{"metro west"}, or \code{"full metro"}
@@ -36,6 +37,10 @@ stl_get_census <- function(region, level, topic, table, variable, year, product,
   ## level
   if (missing(level)){
     stop("The 'level' argument must be specified.")
+  }
+
+  if (level %in% c("block", "block group", "tract", "county") == FALSE){
+    stop("The 'level' input in invalid. See documentation ('?stl_get_data') for valid inputs.")
   }
 
   ## content
