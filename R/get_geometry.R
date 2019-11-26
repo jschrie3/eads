@@ -43,7 +43,7 @@ stl_get_geo <- function(region, level, year = 2017, crs = 26915, ...){
   out <- stl_get_tiger(region, level, year = year, ...)
 
   # transform
-  out <- sf::st_transform(out, crs = 26915)
+  out <- sf::st_transform(out, crs = crs)
 
   # return output
   return(out)
@@ -72,12 +72,24 @@ stl_get_tiger <- function(region, level, year, ...){
 
       if (level == "county"){
 
-        out <- tigris::counties(state = unique(codes$state),
-                                year = year,
-                                class = "sf",
-                                ...)
+        out <- tigris::counties(state = unique(codes$state), year = year, class = "sf", ...)
 
         out <- dplyr::filter(out, COUNTYFP %in% codes$counties)
+
+      } else if (level == "tract"){
+
+        out <- tigris::tracts(state = unique(codes$state), county = codes$counties,
+                              year = year, class = "sf", ...)
+
+      } else if (level == "block group"){
+
+        out <- tigris::block_groups(state = unique(codes$state), county = codes$counties,
+                                    year = year, class = "sf", ...)
+
+      } else if (level == "block"){
+
+        out <- tigris::blocks(state = unique(codes$state), county = codes$counties,
+                              year = year, class = "sf", ...)
 
       }
 
@@ -97,12 +109,27 @@ stl_get_tiger <- function(region, level, year, ...){
         mo <- tigris::counties(state = 29, year = year, class = "sf", ...)
         mo <- dplyr::filter(mo, COUNTYFP %in% mo_counties)
 
-        out <- rbind(il, mo)
+      } else if (level == "tract"){
+
+        il <- tigris::tracts(state = 17, county = il_counties, year = year, class = "sf", ...)
+        mo <- tigris::tracts(state = 29, county = mo_counties, year = year, class = "sf", ...)
+
+      } else if (level == "block group"){
+
+        il <- tigris::block_groups(state = 17, county = il_counties, year = year, class = "sf", ...)
+        mo <- tigris::block_groups(state = 29, county = mo_counties, year = year, class = "sf", ...)
+
+      } else if (level == "block"){
+
+        il <- tigris::blocks(state = 17, county = il_counties, year = year, class = "sf", ...)
+        mo <- tigris::blocks(state = 29, county = mo_counties, year = year, class = "sf", ...)
 
       }
 
+      out <- rbind(il, mo)
 
     }
+
   }
 
   # return output
